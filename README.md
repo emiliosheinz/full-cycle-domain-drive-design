@@ -8,7 +8,6 @@ In short, DDD is primarily about modeling a ubiquitous language within a bounded
 
 ## Domain vs Subdomains
 
-
 In DDD, a domain encompasses the entire business or organization that the software serves, while a subdomain represents a specific, focused area within that larger domain. Subdomains are typically organized in the following hierarchical structure:
 
 At the apex of this hierarchy is the **Core subdomain**, which constitutes the most crucial and value-driven aspect of the business or organization. To illustrate, in the case of Netflix, the Core subdomain would be the one associated with movies, as it is pivotal to the streaming service's essence. Supporting the Core subdomain are **Support subdomains**, which provide assistance to the functionality of the core area. Finally, **Generic subdomains** offer broad, cross-cutting support across the entire domain, contributing to the overall robustness and coherence of the software system.
@@ -16,3 +15,9 @@ At the apex of this hierarchy is the **Core subdomain**, which constitutes the m
 This hierarchical organization of domains and subdomains in DDD allows for a nuanced and structured approach to software development, emphasizing the identification and prioritization of essential business components.
 
 ![Domain vs Subdomains](./domain-vs-subdomains.png)
+
+## Problem Space vs Solution Space
+
+In summary, DDD involves understanding and addressing complex problems by distinguishing between the problem space and the solution space. The process begins with comprehending the overarching domain complexities and breaking them down into subdomains within the problem space. This division allows for a focused approach to solving specific issues. In the solution space, DDD emphasizes domain modeling, where the goal is to model the domain and define bounded contexts, representing specific problem areas that need resolution. The key idea is to organize and prioritize tasks within these contexts, enabling a systematic and effective development approach. DDD encourages the delineation of subdomains into bounded contexts, facilitating a comprehensive understanding of problems and their solutions, ultimately guiding software development at its core.
+
+![Problem Space vs Solution Space](./problem-and-sulution-space.png)
