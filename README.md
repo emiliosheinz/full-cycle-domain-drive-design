@@ -21,3 +21,9 @@ This hierarchical organization of domains and subdomains in DDD allows for a nua
 In summary, DDD involves understanding and addressing complex problems by distinguishing between the problem space and the solution space. The process begins with comprehending the overarching domain complexities and breaking them down into subdomains within the problem space. This division allows for a focused approach to solving specific issues. In the solution space, DDD emphasizes domain modeling, where the goal is to model the domain and define bounded contexts, representing specific problem areas that need resolution. The key idea is to organize and prioritize tasks within these contexts, enabling a systematic and effective development approach. DDD encourages the delineation of subdomains into bounded contexts, facilitating a comprehensive understanding of problems and their solutions, ultimately guiding software development at its core.
 
 ![Problem Space vs Solution Space](./problem-and-sulution-space.png)
+
+## Bounded Context
+
+A bounded context is an explicit boundary within which a domain model exists. Inside the boundary all terms, definitions, and concepts of the Ubiquitous Language are consistent and specific to the domain model. This boundary not only serves as a container for the domain's intricacies but also functions as a robust framework that safeguards the precision and clarity of the shared language, facilitating effective communication and understanding among stakeholders.
+
+The Context always reigns supreme. This implies that when encountering the same term in two distinct contexts, they constitute disparate terms, resulting in two distinct entities within your system. Conversely, if you encounter two distinct terms signifying the same concept, it is likely indicative of either a different context or a deficiency in your Ubiquitous Language.
