@@ -27,3 +27,22 @@ In summary, DDD involves understanding and addressing complex problems by distin
 A bounded context is an explicit boundary within which a domain model exists. Inside the boundary all terms, definitions, and concepts of the Ubiquitous Language are consistent and specific to the domain model. This boundary not only serves as a container for the domain's intricacies but also functions as a robust framework that safeguards the precision and clarity of the shared language, facilitating effective communication and understanding among stakeholders.
 
 The Context always reigns supreme. This implies that when encountering the same term in two distinct contexts, they constitute disparate terms, resulting in two distinct entities within your system. Conversely, if you encounter two distinct terms signifying the same concept, it is likely indicative of either a different context or a deficiency in your Ubiquitous Language.
+
+## Context mapping
+
+Context mapping is a collaborative technique that involves all stakeholders, including developers, domain experts, and business analysts, that helps identify the relationships between bounded contexts. It is a powerful tool that allows developers to understand the interdependencies between contexts and the overall domain and is a crucial step in the DDD process, as it enables the identification of the most critical contexts and their relationships, facilitating the prioritization of tasks and the overall development process.
+
+### Patterns
+
+- Partnership
+- Shared Kernel
+- Customer-Supplier
+- Conformist
+- Anticorruption Layer
+- Open Host Service
+- Published Language
+- Separate Ways
+- Big Ball of Mud
+
+For more information about the **Context Mapping Patterns**, please refer to this [GitHub repository](https://github.com/ddd-crew/context-mapping) where you can find a detailed explanation of each one of them.
+
