@@ -14,13 +14,13 @@ At the apex of this hierarchy is the **Core subdomain**, which constitutes the m
 
 This hierarchical organization of domains and subdomains in DDD allows for a nuanced and structured approach to software development, emphasizing the identification and prioritization of essential business components.
 
-![Domain vs Subdomains](./domain-vs-subdomains.png)
+![Domain vs Subdomains](./docs/images/domain-vs-subdomains.png)
 
 ## Problem Space vs Solution Space
 
 In summary, DDD involves understanding and addressing complex problems by distinguishing between the problem space and the solution space. The process begins with comprehending the overarching domain complexities and breaking them down into subdomains within the problem space. This division allows for a focused approach to solving specific issues. In the solution space, DDD emphasizes domain modeling, where the goal is to model the domain and define bounded contexts, representing specific problem areas that need resolution. The key idea is to organize and prioritize tasks within these contexts, enabling a systematic and effective development approach. DDD encourages the delineation of subdomains into bounded contexts, facilitating a comprehensive understanding of problems and their solutions, ultimately guiding software development at its core.
 
-![Problem Space vs Solution Space](./problem-and-sulution-space.png)
+![Problem Space vs Solution Space](./docs/images/problem-and-sulution-space.png)
 
 ## Bounded Context
 
@@ -46,3 +46,6 @@ Context mapping is a collaborative technique that involves all stakeholders, inc
 
 For more information about the **Context Mapping Patterns**, please refer to this [GitHub repository](https://github.com/ddd-crew/context-mapping) where you can find a detailed explanation of each one of them.
 
+## Entities
+
+An entity is something unique that can be changed over time. It has continuity in its lifecycle and can be distinguished independently of the attributes that are important to the user application. It can be a person, city, car, a lottery ticket, or a bank transaction, for example.
