@@ -1,0 +1,23 @@
+{
+  "name": "full-cycle-domain-drive-design",
+  "version": "1.0.0",
+  "description": "Domain-Driven Design (DDD) was created by Eric Evans in his book [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com.br/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215). It is a collection of principles and patterns that help developers craft elegant object systems. It is neither a framework nor a library; instead, it comprises a set of principles and patterns that can be implemented in any software project. It serves as a mindset for approaching software development based on its domain, rather than its technical implementation details.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emiliosheinz/full-cycle-domain-drive-design.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emiliosheinz/full-cycle-domain-drive-design/issues"
+  },
+  "homepage": "https://github.com/emiliosheinz/full-cycle-domain-drive-design#readme",
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}
