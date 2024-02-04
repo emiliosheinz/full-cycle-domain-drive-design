@@ -1,4 +1,4 @@
-class Customer {
+class AnemicCustomer {
   _id: string
   _name: string
   _address: string

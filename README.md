@@ -49,3 +49,7 @@ For more information about the **Context Mapping Patterns**, please refer to thi
 ## Entities
 
 An entity is something unique that can be changed over time. It has continuity in its lifecycle and can be distinguished independently of the attributes that are important to the user application. It can be a person, city, car, a lottery ticket, or a bank transaction, for example.
+
+### Rich vs Anemic entities
+
+In DDD, entities can be classified as either rich or anemic. A rich entity is one that contains both data and behavior, while an anemic entity is one that contains only data. The distinction between the two is crucial, as it has a significant impact on the overall design and architecture of the software system.
