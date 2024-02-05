@@ -1,7 +1,9 @@
+import { Address } from './address'
+
 class RichCustomer {
   _id: string
   _name: string
-  _address?: string
+  _address?: Address
   _isActive: boolean = false
 
   constructor(id: string, name: string) {
@@ -36,5 +38,9 @@ class RichCustomer {
 
   deactivate() {
     this._isActive = false
+  }
+
+  set address(address: Address) {
+    this._address = address
   }
 }
