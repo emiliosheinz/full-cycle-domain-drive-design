@@ -53,3 +53,13 @@ An entity is something unique that can be changed over time. It has continuity i
 ### Rich vs Anemic entities
 
 In DDD, entities can be classified as either rich or anemic. A rich entity is one that contains both data and behavior, while an anemic entity is one that contains only data. The distinction between the two is crucial, as it has a significant impact on the overall design and architecture of the software system.
+
+## Value Objects
+
+An object that represents a descriptive aspect of the domain with no conceptual identity is called a Value Object. Value Objects are instantiated to represent elements of the design that we care about only for what they are, not who or which they are. Value objects are different from entities - they don't have a concept of identity. They encapsulate primitive types in the domain and solve primitive obsession.
+
+There are three main qualities of Value Objects:
+
+- They validate themselves
+- They are immutable
+- They have no identity
