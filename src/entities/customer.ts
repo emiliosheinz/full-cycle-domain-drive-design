@@ -1,7 +1,7 @@
 import { Address } from './address'
 
-class RichCustomer {
-  _id: string
+export class Customer {
+  private _id: string
   _name: string
   _address?: Address
   _isActive: boolean = false
