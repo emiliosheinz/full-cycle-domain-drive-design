@@ -2,9 +2,9 @@ import { Address } from './address'
 
 export class Customer {
   private _id: string
-  _name: string
-  _address?: Address
-  _isActive: boolean = false
+  private _name: string
+  private _address?: Address
+  private _isActive: boolean = false
 
   constructor(id: string, name: string) {
     this._id = id
@@ -13,20 +13,17 @@ export class Customer {
   }
 
   validate() {
-    if (!this._id) {
+    if (this._id.length <= 0) {
       throw new Error('Id is required')
     }
-    if (!this._name) {
+    if (this._name.length <= 0) {
       throw new Error('Name is required')
     }
   }
 
   changeName(name: string) {
-    const isFullName = name.split(' ').length > 1
-    if (!isFullName) {
-      throw new Error('Name must be a full name')
-    }
     this._name = name
+    this.validate()
   }
 
   activate() {
@@ -38,6 +35,14 @@ export class Customer {
 
   deactivate() {
     this._isActive = false
+  }
+
+  get name(): string {
+    return this._name
+  }
+
+  get isActive(): boolean {
+    return this._isActive
   }
 
   set address(address: Address) {
