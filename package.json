@@ -4,7 +4,7 @@
   "description": "Domain-Driven Design (DDD) was created by Eric Evans in his book [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com.br/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215). It is a collection of principles and patterns that help developers craft elegant object systems. It is neither a framework nor a library; instead, it comprises a set of principles and patterns that can be implemented in any software project. It serves as a mindset for approaching software development based on its domain, rather than its technical implementation details.",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "tsc --noEmit && jest",
     "test:watch": "jest --watch"
   },
   "repository": {
@@ -25,6 +25,7 @@
     "@types/jest": "^29.5.12",
     "jest": "^29.7.0",
     "ts-node": "^10.9.2",
+    "tsc": "^2.0.4",
     "tslint": "^6.1.3",
     "typescript": "^5.3.3"
   }

@@ -16,7 +16,7 @@ customer.activate()
 
 const items = Array.from(
   { length: 10 },
-  (_, i) => new OrderItem(String(i), `Item ${i}`, i * 10)
+  (_, i) => new OrderItem(String(i), `Item ${i}`, i * 10, '1', i + 1)
 )
 
 const order = new Order('1', '1', items)
