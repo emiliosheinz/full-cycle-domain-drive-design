@@ -69,3 +69,9 @@ There are three main qualities of Value Objects:
 An aggregate is a cluster of associated objects that are treated as a unit for data changes. Each aggregate has a root and a boundary. The root is an entity that serves as a single entry point to the aggregate, and the boundary is a set of rules that define the consistency of the aggregate. The aggregate root is the only member of the aggregate that outside objects are allowed to hold references to, and it is the only member of the aggregate that can hold references to other objects.
 
 ![Aggregates](./docs/images/aggregates.png)
+
+## Domain Services
+
+A Service in the domain layer is a stateless operation that fulfills a domain-specific task. Often the best indication that you should create a Service in the domain model is when the operation you need to perform feels out of place as a method on an Aggregate or a Value Object.
+
+If you find yourself needing to create a lot of Domain Services, it might be a sign that you need to revisit your Aggregates and Value Objects to make sure they are well designed.
