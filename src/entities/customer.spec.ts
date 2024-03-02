@@ -41,4 +41,12 @@ describe('Customer', () => {
       'Address is required to activate customer'
     )
   })
+
+  it('should add rewarded points', () => {
+    const customer = new Customer('1', 'John Doe')
+    expect(customer.rewardedPoints).toBe(0)
+    customer.addRewardPoints(100)
+    expect(customer.rewardedPoints).toBe(100)
+    customer.addRewardPoints(10)
+  })
 })

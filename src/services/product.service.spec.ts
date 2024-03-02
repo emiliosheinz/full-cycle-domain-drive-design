@@ -10,6 +10,6 @@ describe('Product service', () => {
     ProductService.increasePrice(products, 100)
 
     expect(product1.price).toBe(200)
-    expect(product2.price).toBe(300)
+    expect(product2.price).toBe(400)
   })
 })

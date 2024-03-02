@@ -75,3 +75,9 @@ An aggregate is a cluster of associated objects that are treated as a unit for d
 A Service in the domain layer is a stateless operation that fulfills a domain-specific task. Often the best indication that you should create a Service in the domain model is when the operation you need to perform feels out of place as a method on an Aggregate or a Value Object.
 
 If you find yourself needing to create a lot of Domain Services, it might be a sign that you need to revisit your Aggregates and Value Objects to make sure they are well designed.
+
+## Repositories
+
+A Repository is a mechanism for encapsulating storage, retrieval, and search behavior which emulates a collection of objects. When you retrieve an object from a Repository, you expect it to be in the same valid state as when you stored it. Generally speaking, there is a one-to-one relationship between an aggregate and a repository.
+
+This pattern is a way to provide a separation between the domain model and the database.
