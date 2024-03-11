@@ -27,6 +27,10 @@ export class Customer {
     this.validate()
   }
 
+  changeAddress(address: Address) {
+    this._address = address
+  }
+
   activate() {
     if (!this._address) {
       throw new Error('Address is required to activate customer')
@@ -56,6 +60,10 @@ export class Customer {
 
   get isActive(): boolean {
     return this._isActive
+  }
+
+  get address(): Address {
+    return this._address
   }
 
   set address(address: Address) {

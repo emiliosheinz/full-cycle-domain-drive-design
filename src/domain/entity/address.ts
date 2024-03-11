@@ -20,6 +20,26 @@ export class Address {
     this.validate()
   }
 
+  get street() {
+    return this._street
+  }
+
+  get number() {
+    return this._number
+  }
+
+  get city() {
+    return this._city
+  }
+
+  get state() {
+    return this._state
+  }
+
+  get zip() {
+    return this._zip
+  }
+
   validate() {
     if (!this._street) {
       throw new Error('Street is required')
