@@ -24,7 +24,19 @@ export class Order {
     }
   }
 
+  get id(): string {
+    return this._id
+  }
+
   get total(): number {
     return this._items.reduce((acc, item) => acc + item.getTotal(), 0)
+  }
+
+  get customerId(): string {
+    return this._customerId
+  }
+
+  get items(): OrderItem[] {
+    return this._items
   }
 }
