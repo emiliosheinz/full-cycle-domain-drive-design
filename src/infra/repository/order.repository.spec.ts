@@ -190,4 +190,25 @@ describe('Order repository test', () => {
 
     await expect(orderRepository.find(id)).rejects.toThrow('Order not found')
   })
+
+  test('should find all orders', async () => {
+    const customer = await makeCustomer()
+    const product = await makeProduct()
+    const orderItem = makeOrderItem({ product })
+    const order = await makeOrder({
+      customer,
+      orderItems: [orderItem],
+    })
+
+    const orderRepository = new OrderRepository()
+    const foundOrders = await orderRepository.findAll()
+
+    expect(foundOrders).toStrictEqual([order])
+  })
+
+  test('should return empty array when no orders were found', async () => {
+    const orderRepository = new OrderRepository()
+    const orders = await orderRepository.findAll()
+    await expect(orders).toStrictEqual([])
+  })
 })

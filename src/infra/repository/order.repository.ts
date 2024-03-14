@@ -5,7 +5,7 @@ import { OrderItemModel } from '../db/sequelize/model/order-item.model'
 import { OrderModel } from '../db/sequelize/model/order.model'
 
 export class OrderRepository implements OrderRepositoryInterface {
-  private orderItemToDatabase(orderItem: OrderItem) {
+  private fromOrderItemToDatabase(orderItem: OrderItem) {
     return {
       id: orderItem.id,
       name: orderItem.name,
@@ -15,20 +15,34 @@ export class OrderRepository implements OrderRepositoryInterface {
     }
   }
 
+  private fromDatabaseToOrder(orderModel: OrderModel): Order {
+    const items = orderModel.items.map(item => {
+      return new OrderItem(
+        item.id,
+        item.name,
+        item.price,
+        item.product_id,
+        item.quantity
+      )
+    })
+
+    return new Order(orderModel.id, orderModel.customer_id, items)
+  }
+
   async create(entity: Order): Promise<void> {
     await OrderModel.create(
       {
         id: entity.id,
         customer_id: entity.customerId,
         total: entity.total(),
-        items: entity.items.map(this.orderItemToDatabase),
+        items: entity.items.map(this.fromOrderItemToDatabase),
       },
       { include: [{ model: OrderItemModel }] }
     )
   }
 
   async update(entity: Order): Promise<void> {
-    const items = entity.items.map(this.orderItemToDatabase)
+    const items = entity.items.map(this.fromOrderItemToDatabase)
 
     const storedItems = await OrderItemModel.findAll({
       where: { order_id: entity.id },
@@ -73,20 +87,11 @@ export class OrderRepository implements OrderRepositoryInterface {
       throw new Error('Order not found')
     }
 
-    const items = orderModel.items.map(item => {
-      return new OrderItem(
-        item.id,
-        item.name,
-        item.price,
-        item.product_id,
-        item.quantity
-      )
-    })
-
-    return new Order(orderModel.id, orderModel.customer_id, items)
+    return this.fromDatabaseToOrder(orderModel)
   }
 
   async findAll(): Promise<Order[]> {
-    throw new Error('Method not implemented.')
+    const orderModels = await OrderModel.findAll({ include: ['items'] })
+    return orderModels.map(this.fromDatabaseToOrder)
   }
 }
