@@ -21,6 +21,6 @@ describe('Order service', () => {
     const orderItem = new OrderItem('OI1', 'Order Item 1', 100, 'P1', 2)
     const order = OrderService.placeOrder(customer, [orderItem])
     expect(customer.rewardedPoints).toBe(100)
-    expect(order.total).toBe(200)
+    expect(order.total()).toBe(200)
   })
 })

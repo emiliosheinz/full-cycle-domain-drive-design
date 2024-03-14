@@ -28,7 +28,7 @@ export class Order {
     return this._id
   }
 
-  get total(): number {
+  total(): number {
     return this._items.reduce((acc, item) => acc + item.getTotal(), 0)
   }
 
@@ -38,5 +38,13 @@ export class Order {
 
   get items(): OrderItem[] {
     return this._items
+  }
+
+  addItem(item: OrderItem) {
+    this._items.push(item)
+  }
+
+  removeItem(id: string) {
+    this._items = this._items.filter(item => item.id !== id)
   }
 }

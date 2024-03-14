@@ -13,7 +13,7 @@ import { OrderItem } from '../../domain/entity/order-item'
 import { Order } from '../../domain/entity/order'
 import { OrderRepository } from './order.repository'
 
-async function makeOrder({ shouldCreateOnDb = true } = {}) {
+async function makeCustomer({ shouldCreateOnDb = true } = {}) {
   const customer = new Customer(faker.string.uuid(), faker.person.fullName())
   const address = new Address(
     faker.location.street(),
@@ -24,12 +24,30 @@ async function makeOrder({ shouldCreateOnDb = true } = {}) {
   )
   customer.changeAddress(address)
 
+  if (shouldCreateOnDb) {
+    const customerRepository = new CustomerRepository()
+    await customerRepository.create(customer)
+  }
+
+  return customer
+}
+
+async function makeProduct({ shouldCreateOnDb = true } = {}) {
   const product = new Product(
     faker.string.uuid(),
     faker.commerce.product(),
     Number(faker.commerce.price({ min: 10, max: 100, dec: 2 }))
   )
 
+  if (shouldCreateOnDb) {
+    const productRepository = new ProductRepository()
+    await productRepository.create(product)
+  }
+
+  return product
+}
+
+function makeOrderItem({ product }: { product: Product }) {
   const orderItem = new OrderItem(
     faker.string.uuid(),
     product.name,
@@ -37,13 +55,22 @@ async function makeOrder({ shouldCreateOnDb = true } = {}) {
     product.id,
     faker.number.int({ min: 1, max: 10 })
   )
-  const order = new Order(faker.string.uuid(), customer.id, [orderItem])
+
+  return orderItem
+}
+
+async function makeOrder({
+  customer,
+  orderItems,
+  shouldCreateOnDb = true,
+}: {
+  customer: Customer
+  orderItems: OrderItem[]
+  shouldCreateOnDb?: boolean
+}) {
+  const order = new Order(faker.string.uuid(), customer.id, orderItems)
 
   if (shouldCreateOnDb) {
-    const customerRepository = new CustomerRepository()
-    await customerRepository.create(customer)
-    const productRepository = new ProductRepository()
-    await productRepository.create(product)
     const orderRepository = new OrderRepository()
     await orderRepository.create(order)
   }
@@ -76,7 +103,13 @@ describe('Order repository test', () => {
   })
 
   it('should create an order', async () => {
-    const order = await makeOrder()
+    const customer = await makeCustomer()
+    const product = await makeProduct()
+    const orderItem = makeOrderItem({ product })
+    const order = await makeOrder({
+      customer,
+      orderItems: [orderItem],
+    })
 
     const orderModel = await OrderModel.findOne({
       where: { id: order.id },
@@ -86,7 +119,45 @@ describe('Order repository test', () => {
     expect(orderModel.toJSON()).toStrictEqual({
       id: order.id,
       customer_id: order.customerId,
-      total: order.total,
+      total: order.total(),
+      items: order.items.map(orderItem => ({
+        id: orderItem.id,
+        name: orderItem.name,
+        price: orderItem.price,
+        quantity: orderItem.quantity,
+        order_id: order.id,
+        product_id: orderItem.productId,
+      })),
+    })
+  })
+
+  it('should update an order', async () => {
+    const customer = await makeCustomer()
+    const product = await makeProduct()
+    const [itemToBeUpdated, itemToBeRemoved] = Array.from({ length: 2 }, () =>
+      makeOrderItem({ product })
+    )
+    const order = await makeOrder({
+      customer,
+      orderItems: [itemToBeUpdated, itemToBeRemoved],
+    })
+
+    const itemToBeAdded = makeOrderItem({ product })
+    order.addItem(itemToBeAdded)
+    order.removeItem(itemToBeRemoved.id)
+
+    const orderRepository = new OrderRepository()
+    await orderRepository.update(order)
+
+    const orderModel = await OrderModel.findOne({
+      where: { id: order.id },
+      include: ['items'],
+    })
+
+    expect(orderModel.toJSON()).toStrictEqual({
+      id: order.id,
+      customer_id: order.customerId,
+      total: order.total(),
       items: order.items.map(orderItem => ({
         id: orderItem.id,
         name: orderItem.name,

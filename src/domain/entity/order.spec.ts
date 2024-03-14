@@ -21,7 +21,7 @@ describe('Order', () => {
       new OrderItem('3', 'Product 3', 300, 'p3', 1),
     ]
     const order = new Order('1', '1', orderItems)
-    expect(order.total).toBe(900)
+    expect(order.total()).toBe(900)
   })
 
   it('should throw error if the item quantity is less or equals 0', () => {
