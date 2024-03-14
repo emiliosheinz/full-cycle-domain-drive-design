@@ -168,4 +168,26 @@ describe('Order repository test', () => {
       })),
     })
   })
+
+  test('should find an order', async () => {
+    const customer = await makeCustomer()
+    const product = await makeProduct()
+    const orderItem = makeOrderItem({ product })
+    const order = await makeOrder({
+      customer,
+      orderItems: [orderItem],
+    })
+
+    const orderRepository = new OrderRepository()
+    const foundOrder = await orderRepository.find(order.id)
+
+    expect(foundOrder).toStrictEqual(order)
+  })
+
+  test('should throw an error when order is not found', async () => {
+    const orderRepository = new OrderRepository()
+    const id = faker.string.uuid()
+
+    await expect(orderRepository.find(id)).rejects.toThrow('Order not found')
+  })
 })

@@ -64,7 +64,26 @@ export class OrderRepository implements OrderRepositoryInterface {
   }
 
   async find(id: string): Promise<Order> {
-    throw new Error('Method not implemented.')
+    const orderModel = await OrderModel.findOne({
+      where: { id },
+      include: ['items'],
+    })
+
+    if (!orderModel) {
+      throw new Error('Order not found')
+    }
+
+    const items = orderModel.items.map(item => {
+      return new OrderItem(
+        item.id,
+        item.name,
+        item.price,
+        item.product_id,
+        item.quantity
+      )
+    })
+
+    return new Order(orderModel.id, orderModel.customer_id, items)
   }
 
   async findAll(): Promise<Order[]> {
