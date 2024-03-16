@@ -1,12 +1,14 @@
+import { th } from '@faker-js/faker'
 import EventDispatcherInterface from './event-dispatcher.interface'
 import { EventHandlerInterface } from './event-handler.interface'
 import { EventInterface } from './event.interface'
 
 export class EventDispatcher implements EventDispatcherInterface {
-  readonly eventHandlers: Record<
-    string,
-    EventHandlerInterface<EventInterface>[]
-  > = {}
+  private handlers: Record<string, EventHandlerInterface<EventInterface>[]> = {}
+
+  get eventHandlers(): Record<string, EventHandlerInterface<EventInterface>[]> {
+    return this.handlers
+  }
 
   notify(event: EventInterface): void {}
 
@@ -14,16 +16,24 @@ export class EventDispatcher implements EventDispatcherInterface {
     eventName: string,
     handler: EventHandlerInterface<EventInterface>
   ): void {
-    if (!this.eventHandlers[eventName]) {
-      this.eventHandlers[eventName] = []
+    if (!this.handlers[eventName]) {
+      this.handlers[eventName] = []
     }
-    this.eventHandlers[eventName].push(handler)
+    this.handlers[eventName].push(handler)
   }
 
   unregister(
     eventName: string,
     handler: EventHandlerInterface<EventInterface>
-  ): void {}
+  ): void {
+    const eventHandlers = this.handlers[eventName]
+    const index = eventHandlers.indexOf(handler)
+    if (index !== -1) {
+      eventHandlers.splice(index, 1)
+    }
+  }
 
-  unregisterAll(): void {}
+  unregisterAll(): void {
+    this.handlers = {}
+  }
 }
