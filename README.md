@@ -81,3 +81,15 @@ If you find yourself needing to create a lot of Domain Services, it might be a s
 A Repository is a mechanism for encapsulating storage, retrieval, and search behavior which emulates a collection of objects. When you retrieve an object from a Repository, you expect it to be in the same valid state as when you stored it. Generally speaking, there is a one-to-one relationship between an aggregate and a repository.
 
 This pattern is a way to provide a separation between the domain model and the database.
+
+## Domain Events
+
+Domain Events are a pattern that is used to capture a state change in the domain. They are used to communicate between Aggregates and Bounded Contexts and decouple the domain model from the rest of the system.
+
+As a good practice, we should always name the events in the past tense, as they represent something that has already happened. E.g. `OrderPlaced`, `OrderShipped`, `OrderDelivered`.
+
+### Components
+
+- Event: Represents something that has happened in the domain.
+- Event Handler: Listens for events and performs some action in response to them.
+- Event Dispatcher: Dispatches events to their handlers.
