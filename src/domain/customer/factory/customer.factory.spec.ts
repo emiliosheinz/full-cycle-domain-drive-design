@@ -12,13 +12,13 @@ describe('Customer Factory', () => {
   })
 
   it('should create a customer with address', () => {
-    const address = new Address(
-      'Main St.',
-      1921,
-      'São Paulo',
-      'São Paulo',
-      '01000-000'
-    )
+    const address = new Address({
+      street: 'Main St.',
+      number: 1921,
+      city: 'São Paulo',
+      state: 'São Paulo',
+      zip: '01000-000',
+    })
     const customer = CustomerFactory.createWithAddress('John Doe', address)
     expect(customer).toBeInstanceOf(Customer)
     expect(customer.name).toBe('John Doe')

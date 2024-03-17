@@ -53,13 +53,13 @@ export class CustomerRepository implements CustomerRepositoryInterface {
     }
 
     const customer = new Customer(id, customerModel.name)
-    const address = new Address(
-      customerModel.street,
-      customerModel.number,
-      customerModel.city,
-      customerModel.state,
-      customerModel.zipCode
-    )
+    const address = new Address({
+      street: customerModel.street,
+      number: customerModel.number,
+      city: customerModel.city,
+      state: customerModel.state,
+      zip: customerModel.zipCode,
+    })
     customer.changeAddress(address)
     return customer
   }
@@ -70,13 +70,13 @@ export class CustomerRepository implements CustomerRepositoryInterface {
     const customers = customerModels.map(customerModels => {
       let customer = new Customer(customerModels.id, customerModels.name)
       customer.addRewardPoints(customerModels.rewardedPoints)
-      const address = new Address(
-        customerModels.street,
-        customerModels.number,
-        customerModels.city,
-        customerModels.state,
-        customerModels.zipCode
-      )
+      const address = new Address({
+        street: customerModels.street,
+        number: customerModels.number,
+        city: customerModels.city,
+        state: customerModels.state,
+        zip: customerModels.zipCode,
+      })
       customer.changeAddress(address)
       if (customerModels.active) {
         customer.activate()

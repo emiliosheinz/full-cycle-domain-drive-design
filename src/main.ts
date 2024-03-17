@@ -4,13 +4,13 @@ import { OrderItem } from './domain/checkout/entity/order-item'
 import { Order } from './domain/checkout/entity/order'
 
 const customer = new Customer('1', 'John Doe')
-const address = new Address(
-  'Main Street',
-  1920,
-  'New York',
-  'New York',
-  '10044'
-)
+const address = new Address({
+  street: 'Main Street',
+  number: 1920,
+  city: 'New York',
+  state: 'New York',
+  zip: '10044',
+})
 customer.address = address
 customer.activate()
 

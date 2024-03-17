@@ -11,13 +11,13 @@ describe('Customer Changed Address Event', () => {
     const spyEventHandler = jest.spyOn(eventHandler, 'handle')
     eventDispatcher.register('CustomerChangedAddressEvent', eventHandler)
     const customer = new Customer('1', 'John Doe')
-    const address = new Address(
-      'Main St.',
-      1921,
-      'São Paulo',
-      'São Paulo',
-      '01000-000'
-    )
+    const address = new Address({
+      street: 'Main St.',
+      number: 1921,
+      city: 'São Paulo',
+      state: 'São Paulo',
+      zip: '01000-000',
+    })
     customer.changeAddress(address)
     const event = new CustomerChangedAddressEvent(customer)
     eventDispatcher.notify(event)

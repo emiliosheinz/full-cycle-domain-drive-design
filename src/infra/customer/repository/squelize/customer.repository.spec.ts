@@ -26,7 +26,13 @@ describe('Customer repository test', () => {
   it('should create a customer', async () => {
     const customerRepository = new CustomerRepository()
     const customer = new Customer('123', 'Customer 1')
-    const address = new Address('Street 1', 1, 'State 1', 'City 1', 'ZipCode 1')
+    const address = new Address({
+      street: 'Street 1',
+      number: 1,
+      state: 'State 1',
+      city: 'City 1',
+      zip: 'ZipCode 1',
+    })
     customer.address = address
     await customerRepository.create(customer)
 
@@ -50,7 +56,13 @@ describe('Customer repository test', () => {
   it('should update a customer', async () => {
     const customerRepository = new CustomerRepository()
     const customer = new Customer('123', 'Customer 1')
-    const address = new Address('Street 1', 1, 'State 1', 'City 1', 'ZipCode 1')
+    const address = new Address({
+      street: 'Street 1',
+      number: 1,
+      state: 'State 1',
+      city: 'City 1',
+      zip: 'ZipCode 1',
+    })
     customer.address = address
     await customerRepository.create(customer)
 
@@ -74,7 +86,13 @@ describe('Customer repository test', () => {
   it('should find a customer', async () => {
     const customerRepository = new CustomerRepository()
     const customer = new Customer('123', 'Customer 1')
-    const address = new Address('Street 1', 1, 'State 1', 'City 1', 'ZipCode 1')
+    const address = new Address({
+      street: 'Street 1',
+      number: 1,
+      state: 'State 1',
+      city: 'City 1',
+      zip: 'ZipCode 1',
+    })
     customer.address = address
     await customerRepository.create(customer)
 
@@ -94,25 +112,25 @@ describe('Customer repository test', () => {
   it('should find all customers', async () => {
     const customerRepository = new CustomerRepository()
     const customer1 = new Customer('123', 'Customer 1')
-    const address1 = new Address(
-      'Street 1',
-      1,
-      'State 1',
-      'City 1',
-      'ZipCode 1'
-    )
+    const address1 = new Address({
+      street: 'Street 1',
+      number: 1,
+      state: 'State 1',
+      city: 'City 1',
+      zip: 'ZipCode 1',
+    })
     customer1.address = address1
     customer1.addRewardPoints(10)
     customer1.activate()
 
     const customer2 = new Customer('456', 'Customer 2')
-    const address2 = new Address(
-      'Street 2',
-      2,
-      'State 2',
-      'City 2',
-      'ZipCode 2'
-    )
+    const address2 = new Address({
+      street: 'Street 2',
+      number: 2,
+      state: 'State 2',
+      city: 'City 2',
+      zip: 'ZipCode 2',
+    })
     customer2.address = address2
     customer2.addRewardPoints(20)
 

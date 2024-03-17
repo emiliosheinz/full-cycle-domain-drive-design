@@ -1,3 +1,11 @@
+type AddressConstructorParams = {
+  street: string
+  number: number
+  city: string
+  state: string
+  zip: string
+}
+
 export class Address {
   _street: string
   _number: number
@@ -5,13 +13,7 @@ export class Address {
   _state: string
   _zip: string
 
-  constructor(
-    street: string,
-    number: number,
-    city: string,
-    state: string,
-    zip: string
-  ) {
+  constructor({ street, number, city, state, zip }: AddressConstructorParams) {
     this._street = street
     this._number = number
     this._city = city

@@ -15,13 +15,13 @@ import { Order } from '../../../../domain/checkout/entity/order'
 
 async function makeCustomer({ shouldCreateOnDb = true } = {}) {
   const customer = new Customer(faker.string.uuid(), faker.person.fullName())
-  const address = new Address(
-    faker.location.street(),
-    Number(faker.location.buildingNumber()),
-    faker.location.city(),
-    faker.location.state(),
-    faker.location.zipCode()
-  )
+  const address = new Address({
+    street: faker.location.street(),
+    number: Number(faker.location.buildingNumber()),
+    city: faker.location.city(),
+    state: faker.location.state(),
+    zip: faker.location.zipCode(),
+  })
   customer.changeAddress(address)
 
   if (shouldCreateOnDb) {

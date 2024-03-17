@@ -18,13 +18,13 @@ describe('Customer', () => {
 
   it('should active customer', () => {
     const customer = new Customer('1', 'John Doe')
-    customer.address = new Address(
-      'Main Street',
-      1920,
-      'New York',
-      'New York',
-      '10044'
-    )
+    customer.address = new Address({
+      street: 'Main Street',
+      number: 1920,
+      city: 'New York',
+      state: 'New York',
+      zip: '10044',
+    })
     customer.activate()
     expect(customer.isActive).toBe(true)
   })
