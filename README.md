@@ -104,3 +104,7 @@ Modules should always:
 - have high cohesion and low coupling
 - Encapsulate the domain and not the technical details
 - Should follow the same even though in different layers
+
+## Factories
+
+In DDD, factories are used to encapsulate the complex creation logic of domain objects, particularly when their instantiation involves multiple steps or intricate dependencies. Factories serve as specialized constructors responsible for creating instances of domain objects, ensuring their consistency and adherence to domain invariants. By centralizing the creation logic within factories, DDD promotes better domain modeling and separation of concerns, allowing domain experts to focus on defining the essential behaviors and characteristics of domain objects without being burdened by intricate instantiation details. Factories facilitate the creation of domain objects in a manner that reflects the domain's conceptual integrity and business rules, thereby promoting maintainability, testability, and scalability within the domain model.
