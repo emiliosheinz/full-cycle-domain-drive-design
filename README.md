@@ -93,3 +93,14 @@ As a good practice, we should always name the events in the past tense, as they 
 - Event: Represents something that has happened in the domain.
 - Event Handler: Listens for events and performs some action in response to them.
 - Event Dispatcher: Dispatches events to their handlers.
+
+## Modules
+
+In a DDD context, modules serve as named containers for domain object classes that exhibit high cohesion with each other. The goal should be to achieve low coupling between classes that belong to different modules. Since modules used in DDD are not anemic or generic storage compartments, it is also crucial to appropriately name them.
+
+Modules should always:
+
+- Respect the Ubiquitous Language
+- have high cohesion and low coupling
+- Encapsulate the domain and not the technical details
+- Should follow the same even though in different layers
