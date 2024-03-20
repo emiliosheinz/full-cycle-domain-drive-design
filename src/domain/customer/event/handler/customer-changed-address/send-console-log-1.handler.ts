@@ -1,8 +1,9 @@
 import { EventHandlerInterface } from '../../../../@shared/event/event-handler.interface'
+import { CustomerChangedAddressEvent } from '../../customer-changed-address.event'
 import { CustomerCreatedEvent } from '../../customer-created.event'
 
 export class SendConsoleLogWhenCustomerChangedAddressHandler
-  implements EventHandlerInterface<CustomerCreatedEvent>
+  implements EventHandlerInterface<CustomerChangedAddressEvent>
 {
   handle(event: CustomerCreatedEvent): void {
     console.log(
